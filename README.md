@@ -7,7 +7,7 @@ Instructions :-
 
 1. Clone or Download the repository ( Master Branch )
 
-2. Composer is required so download it from its official ![website](https://getcomposer.org/) according your system
+2. Composer is required so download it from its official [website](https://getcomposer.org/) according your system
 
 3. Navigate to the project directory ~/Quiz-Analyzer/
 
@@ -15,15 +15,18 @@ Instructions :-
 
 5. Copy .env.example to .env
 
-6. Edit `DB_CONNECTION=mysql
+6. Edit according to the your machine configuration
+        `DB_CONNECTION=mysql
          DB_HOST=127.0.0.1
          DB_PORT=3306
          DB_DATABASE=homestead
          DB_USERNAME=homestead
          DB_PASSWORD=secret`  
 
-         according to the your machine configuration
 
 7. Use `php artisan key:generate` to generate the security key
 
-8. Use ``
+8. Use `php artisan migrate` to setup database
+
+9. Use `php artisan serve`  to run the server in development mode.
+  - for the production make the apache server point to ~/Quiz-Analyzer/public  
