@@ -27,7 +27,7 @@ class Quiz extends Migration
           $table->integer('uid')->comment('User id')->references('id')->on('users');
           $table->string('key')->references('key')->on('questions');
           for ($i=1; $i <= $this->NumberOfQuestions ; $i++) {
-            $table->string('question'.$i);
+            $table->string('question'.$i)->default('0');
           }
           $table->timestamps();
       });
