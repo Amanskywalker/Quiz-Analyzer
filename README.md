@@ -3,7 +3,7 @@ A Web application to automate the task of quiz correction
 
 Based on the Laravel (5.2) framework
 
-Instructions :-
+Instructions :
 
 1. Clone or Download the repository ( Master Branch )
 
