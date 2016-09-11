@@ -37,7 +37,7 @@ class Quiz extends Migration
           $table->integer('uid')->comment('User id')->references('id')->on('users');
           $table->string('key')->references('key')->on('questions');
           $table->integer('correct');
-          $table->integer('incorect');
+          $table->integer('incorrect');
           $table->integer('score');
           $table->timestamps();
       });

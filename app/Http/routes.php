@@ -37,7 +37,11 @@ Route::post('/register', 'UserController@AddNewUser');
 Route::get('/logout', 'UserController@DoLogout');
 // for user dashboard
 Route::get('/home', function(){
-  return view('home');
+  if (Auth::check())
+    return view ('home');
+  if (Auth::guard('admin')->check())
+    return redirect('/admin/home');
+  return redirect('/');
 });
 
 // to disaplay question response form

@@ -74,7 +74,7 @@ class AdminController extends Controller
     if (Auth::guard('admin')->attempt(['phone' => $request->phone,'password' => $request->password]))
     {
         // codes to set sessions for functionality extention
-        return redirect('/admin/dashboard');
+        return redirect('/admin/home');
     }
     else
     {

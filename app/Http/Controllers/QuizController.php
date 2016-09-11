@@ -83,9 +83,9 @@ class QuizController extends Controller
         for ($i=1; $i <= $this->NumberOfQuestions ; $i++)
         {
           $a='question'.$i;
-          if($submittedanswer[0]== NULL)
+          if($submittedanswer[0]->$a == NULL)
             $NotAttempt++;
-          if($answer[0]->$a==$submittedanswer[0]->$a)
+          elseif($answer[0]->$a==$submittedanswer[0]->$a)
             $CorrectResponse++;
           else
             $IncorrectResponse++;
@@ -126,10 +126,12 @@ class QuizController extends Controller
       // now get the latest scores and generate the view
       $Scorecards = DB::table('scores')
                         ->join('users', 'scores.uid', '=', 'users.id')
-                        ->orderBy('score', 'asc')->get();
+                        ->orderBy('score', 'desc')->get();
 
-      return view('Score', [
-                  'scorecards' => $scorecards,
+      date_default_timezone_set('Asia/Kolkata');
+      return view('admin.Score', [
+                  'message' => "Score generated at ".date('m/d/Y h:i:s a', time()),
+                  'scorecards' => $Scorecards,
       ]);
 
     }
