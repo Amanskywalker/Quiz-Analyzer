@@ -5,11 +5,11 @@ Based on the PHP Laravel (5.2) framework.
 
 Requirement:
 
--PHP >= 5.5.9
+- PHP >= 5.5.9
 
--Apache server
+- Apache server
 
--MYSQL server
+- MYSQL server
 
 Instructions how to set the server:
 
@@ -44,3 +44,5 @@ Instruction to run the application:
 1. After the server is running. use <host>/admin/login to login as Admin ( first time you have to register ) and set the question set i.e. question paper id and correct answers which will be used for the evaluation of the response submitted by participants.
 
 2. Use generate scorecard to generate to the final score card once each participants have submitted there response.
+
+There is a lot much, Why don't you explore it?
