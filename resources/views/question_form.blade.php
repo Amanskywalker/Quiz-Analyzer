@@ -42,10 +42,10 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="questionid" class="col-md-4 control-label">Question Paper id</label>
+                            <label for="key" class="col-md-4 control-label">Question Paper id</label>
 
                             <div class="col-md-6">
-                                <input id="questionid" type="text" class="form-control" name="questionid" value="">
+                                <input id="key" type="text" class="form-control" name="key" value="">
 
                             </div>
                         </div>
