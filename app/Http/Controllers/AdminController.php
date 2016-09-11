@@ -46,8 +46,13 @@ class AdminController extends Controller
     $user->save();
     if($user->save())
     {
+        if (Auth::guard('admin')->attempt(['phone' => $request->phone,'password' => $request->password]))
+        {
+            // codes to set sessions for functionality extention
+            return redirect('/admin/home');
+        }
         echo "data added to table";
-        return redirect('/admin/home');
+        return redirect('/admin/login');
     }
     return redirect('/admin/login');
   }
