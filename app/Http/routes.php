@@ -19,15 +19,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::auth();
+// for user to login
+Route::get('/login', function(){
+  return view('auth.login');
+});
 
-Route::get('/home', 'HomeController@index');
+Route::post('/login', 'UserController@DoLogin');
+
+// for user to register
+Route::get('/register', function(){
+    return view('auth.register');
+});
+
+Route::post('/register', 'UserController@AddNewUser');
+
+// for user logout
+Route::get('/logout', 'UserController@DoLogout');
+// for user dashboard
+Route::get('/home', function(){
+  return view('home');
+});
 
 // to disaplay question response form
 Route::get('/questions', 'QuizController@DisplayForm');
 
 // to record the user response
 Route::post('/questions', 'QuizController@AddQuizResponse');
+
+//--------------------------< Admin Area >--------------------------------------
 
 // for admin to login
 Route::get('/admin/login', function(){
@@ -37,11 +56,11 @@ Route::get('/admin/login', function(){
 Route::post('/admin/login', 'AdminController@DoLogin');
 
 // for admin to register
-Route::get('/admin/regiseter', function(){
+Route::get('/admin/register', function(){
     return view('admin.auth.register');
 });
 
-Route::post('/admin/register', 'AdminController@AddAdmin');
+Route::post('/admin/register', 'AdminController@AddNewAdmin');
 
 // for admin logout
 Route::get('/admin/logout', 'AdminController@DoLogout');
