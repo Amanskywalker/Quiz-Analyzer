@@ -22,6 +22,7 @@ class QuizController extends Controller
 {
     private $NumberOfQuestions = 20;            //keep it same as the $NumberOfQuestions mentioned in migrations
 
+    // function to display quiz response form
     public function DisplayForm (Request $request)
     {
       $user = Auth::user();           // get the user details;
@@ -32,4 +33,15 @@ class QuizController extends Controller
                     ]);
     }
 
+    // function to record the user response
+    public function AddQuizResponse (Request $request)
+    {
+      # code...
+    }
+
+    // function to display the score card
+    public function DisplayScorecard($value='')
+    {
+      # code...
+    }
 }
