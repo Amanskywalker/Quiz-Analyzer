@@ -1,9 +1,15 @@
 # Quiz-Analyzer
 A Web application to automate the task of quiz correction
 
-Based on the Laravel (5.2) framework
+Based on the PHP Laravel (5.2) framework.
 
-Instructions :
+Requirement:
+
+PHP >= 5.5.9
+Apache server
+MYSQL server
+
+Instructions how to set the server:
 
 1. Clone or Download the repository ( Master Branch )
 
@@ -30,3 +36,9 @@ Instructions :
 
 9. Use `php artisan serve`  to run the server in development mode.
   - for the production make the apache server point to ~/Quiz-Analyzer/public  
+
+Instruction to run the application:
+
+1. After the server is running. use <host>/admin/login to login as Admin ( first time you have to register ) and set the question set i.e. question paper id and correct answers which will be used for the evaluation of the response submitted by participants.
+
+2. Use generate scorecard to generate to the final score card once each participants have submitted there response.
