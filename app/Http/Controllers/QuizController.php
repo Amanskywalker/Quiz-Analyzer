@@ -28,6 +28,8 @@ class QuizController extends Controller
       $user = Auth::user();           // get the user details;
 
       return View('question_form',[
+                      'DangerMessage' => 'Be careful with your clicks Once selected it can\'t be changed',
+                      'WarningMessage' => 'You can\'t Change the response once submitted',
                       'user' => $user,
                       'NumberOfQuestions' => $this->NumberOfQuestions,
                     ]);
