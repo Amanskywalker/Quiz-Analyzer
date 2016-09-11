@@ -5,9 +5,11 @@ Based on the PHP Laravel (5.2) framework.
 
 Requirement:
 
-PHP >= 5.5.9
-Apache server
-MYSQL server
+-PHP >= 5.5.9
+
+-Apache server
+
+-MYSQL server
 
 Instructions how to set the server:
 
