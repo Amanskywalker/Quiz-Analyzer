@@ -5,16 +5,16 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome {{ $user->name }} Please submit your answer </div>
+                <div class="panel-heading"> Add New Question </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/questions') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="questionid" class="col-md-4 control-label">Question Paper id</label>
+                            <label for="key" class="col-md-4 control-label">Question Paper id</label>
 
                             <div class="col-md-6">
-                                <input id="questionid" type="text" class="form-control" name="questionid" value="">
+                                <input id="key" type="text" class="form-control" name="key" value="">
 
                             </div>
                         </div>
@@ -27,10 +27,10 @@
 
                             <div class="col-md-6">
                 <?php
-                          for ($j=1; $j <= 4; $j++)
+                          for ($j=A; $j <= D; $j++)
                           {
                 ?>
-                                <input id="question" type="radio" name="<?php echo "question".$i ;?>" value="<?php echo "$j"; ?>"> <?php echo "$j"; ?> 
+                                <input id="question" type="radio" name="<?php echo "question".$i ;?>" value="<?php echo "$j"; ?>"> <?php echo "$j"; ?>
                 <?php
                           }
                 ?>
@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                     Submit My Answers
+                                     Add Question
                                 </button>
                             </div>
                         </div>

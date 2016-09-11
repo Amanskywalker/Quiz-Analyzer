@@ -68,3 +68,10 @@ Route::get('/admin/logout', 'AdminController@DoLogout');
 Route::get('/admin/home', function(){
   return view('admin.home');
 });
+
+// for adding question sets
+Route::get('/admin/questions', function(){
+  return view('admin.question_form');
+});
+
+Route::post('/admin/questions', 'QuizController@AddQuestions');

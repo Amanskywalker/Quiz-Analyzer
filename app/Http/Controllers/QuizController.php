@@ -63,16 +63,18 @@ class QuizController extends Controller
         }
 
         $sub->save();
-        if($sub->save())
-          return view('success',[
-                      'message' => 'Response submitted succesfully',
-                      'level' => 'success',
-                      ]);
-        else
+
+        if( !($sub->save()) )         // redirect to the success page with error message
           return view('success',[
                       'message' => 'Response not able to submit contact admin right now',
                       'level' => 'danger',
                       ]);
+
+        // now calaculate the user score
+        $CorrectResponse=0;
+        $IncorrectResponse=0;
+        $NotAttempt=0;
+        $answer = Question::
     }
 
     // function to display the score card
@@ -84,6 +86,34 @@ class QuizController extends Controller
     // function to add the questions
     public function AddQuestions ($value='')
     {
-      # code...
+      $validator = Validator::make($request->all(), [
+                'key' => 'required|max:255|unique:questions',
+          ]);
+          // if validation fails send back to register page
+      if ($validator->fails())
+        {        return redirect('/questions')
+                          ->withErrors($validator)
+                          ->withInput();
+        }
+        $sub = new Question;
+        $sub->key = $request->key;
+
+        for ($i=1; $i <= $this->NumberOfQuestions ; $i++)
+        {
+          $a='question'.$i;
+          $sub->$a = $request->$a;
+        }
+
+        $sub->save();
+        if($sub->save())
+          return view('success',[
+                      'message' => 'Question added succesfully :)',
+                      'level' => 'success',
+                      ]);
+        else
+          return view('success',[
+                      'message' => 'Not able to add the questions :(',
+                      'level' => 'danger',
+                      ]);
     }
 }
