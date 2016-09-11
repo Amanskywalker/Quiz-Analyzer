@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\User;                        // to use the User class
-use App\Admin;                        // to use the Admin class
-use App\Submission;                        // to use the Submission class
-use App\Question;                        // to use the Question class
+use App\User;                           // to use the User class
+use App\Admin;                          // to use the Admin class
+use App\Submission;                     // to use the Submission class
+use App\Question;                       // to use the Question class
+use App\Score;                          // to use the Score class
+
 
 use Validator;                          // to use the Validator functions to validate the user input
 
@@ -41,6 +43,7 @@ class QuizController extends Controller
     // function to record the user response
     public function AddQuizResponse (Request $request)
     {
+
       $validator = Validator::make($request->all(), [
                 'key' => 'required|max:255',
           ]);
@@ -66,7 +69,7 @@ class QuizController extends Controller
 
         if( !($sub->save()) )         // redirect to the success page with error message
           return view('success',[
-                      'message' => 'Response not able to submit contact admin right now',
+                      'message' => 'I am not able to accept your Response now <br> Contact admin right now',
                       'level' => 'danger',
                       ]);
 
@@ -74,13 +77,61 @@ class QuizController extends Controller
         $CorrectResponse=0;
         $IncorrectResponse=0;
         $NotAttempt=0;
-        $answer = Question::
+        $submittedanswer = Submission::where('uid',Auth::user()->id)->get();
+        $answer = Question::where('key' => $submittedanswer[0]->key)->get();
+
+        for ($i=1; $i <= $this->NumberOfQuestions ; $i++)
+        {
+          $a='question'.$i;
+          if($submittedanswer[0]== NULL)
+            $NotAttempt++;
+          if($answer[0]->$a==$submittedanswer[0]->$a)
+            $CorrectResponse++;
+          else
+            $IncorrectResponse++;
+        }
+
+        $Points =(($CorrectResponse*4)-($IncorrectResponse));
+
+        // save the score
+        $score = new Score;
+        $score->uid = Auth::user()->id;
+        $score->key = $submittedanswer[0]->key;
+        $score->correct = $CorrectResponse;
+        $score->incorrect = $IncorrectResponse;
+        $score->score = $Points;
+
+        $score->save();
+
+        if($score->save())
+          return view('success',[
+                      'message' => 'I got Your Response :)',
+                      'level' => 'success',
+                      ]);
+        else
+          return view('success',[
+                      'message' => 'I encounter some problem In calculating your Score :(',
+                      'level' => 'danger',
+                      ]);
+
     }
 
     // function to display the score card
     public function DisplayScorecard ($value='')
     {
-      # code...
+      // check wether user is admin or not
+      if(! Auth::guard('admin')->check())
+        redirect('/home');          // if not redirect it to somewhere
+
+      // now get the latest scores and generate the view
+      $Scorecard = DB::table('scores')
+                        ->join('users', 'scores.uid', '=', 'users.id')
+                        ->orderBy('score', 'asc')->get();
+
+      return view('Score', [
+                  'scorecard' => $scorecard,
+      ]);
+
     }
 
     // function to add the questions

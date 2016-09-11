@@ -31,6 +31,16 @@ class Quiz extends Migration
           }
           $table->timestamps();
       });
+
+      Schema::create('scores', function (Blueprint $table) {
+          $table->increments('id');
+          $table->integer('uid')->comment('User id')->references('id')->on('users');
+          $table->string('key')->references('key')->on('questions');
+          $table->integer('correct');
+          $table->integer('incorect');
+          $table->integer('score');
+          $table->timestamps();
+      });
     }
 
     /**
