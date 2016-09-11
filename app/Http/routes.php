@@ -70,9 +70,7 @@ Route::get('/admin/home', function(){
 });
 
 // for adding question sets
-Route::get('/admin/questions', function(){
-  return view('admin.question_form');
-});
+Route::get('/admin/questions', 'QuizController@AddQuestionsForm');
 
 Route::post('/admin/questions', 'QuizController@AddQuestions');
 

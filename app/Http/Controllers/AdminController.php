@@ -47,7 +47,7 @@ class AdminController extends Controller
     if($user->save())
     {
         echo "data added to table";
-        return redirect('/admin/dashboard');
+        return redirect('/admin/home');
     }
     return redirect('/admin/login');
   }

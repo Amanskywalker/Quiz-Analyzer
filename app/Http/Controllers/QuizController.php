@@ -117,7 +117,7 @@ class QuizController extends Controller
     }
 
     // function to display the score card
-    public function DisplayScorecard ($value='')
+    public function DisplayScorecard (Request $request)
     {
       // check wether user is admin or not
       if(! Auth::guard('admin')->check())
@@ -134,8 +134,19 @@ class QuizController extends Controller
 
     }
 
+    // function to display Question addition form
+    public function AddQuestionsForm (Request $request)
+    {
+      return View('admin.question_form',[
+                      'DangerMessage' => 'Be careful with your clicks Once selected it can\'t be changed',
+                      'WarningMessage' => 'You can\'t Change the response once submitted',
+                      'NumberOfQuestions' => $this->NumberOfQuestions,
+                    ]);
+    }
+
+
     // function to add the questions
-    public function AddQuestions ($value='')
+    public function AddQuestions (Request $request)
     {
       $validator = Validator::make($request->all(), [
                 'key' => 'required|max:255|unique:questions',
@@ -157,12 +168,12 @@ class QuizController extends Controller
 
         $sub->save();
         if($sub->save())
-          return view('success',[
+          return view('admin.success',[
                       'message' => 'Question added succesfully :)',
                       'level' => 'success',
                       ]);
         else
-          return view('success',[
+          return view('admin.success',[
                       'message' => 'Not able to add the questions :(',
                       'level' => 'danger',
                       ]);

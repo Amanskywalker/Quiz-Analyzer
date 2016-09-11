@@ -27,7 +27,7 @@
 
                             <div class="col-md-6">
                 <?php
-                          for ($j=A; $j <= D; $j++)
+                          for ($j='A'; $j <= 'D'; $j++)
                           {
                 ?>
                                 <input id="question" type="radio" name="<?php echo "question".$i ;?>" value="<?php echo "$j"; ?>"> <?php echo "$j"; ?>
