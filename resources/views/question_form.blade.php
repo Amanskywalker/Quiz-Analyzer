@@ -1,13 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if(isset($DangerMessage))
+<!-- Message trigger for the events -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                <div class="panel-body">
+                  <div class="alert alert-danger" role="alert">
+                    <strong>{{ $DangerMessage }}</strong>
+                  </div>
+                </div>
+        </div>
+    </div>
+</div>
+@endif
+
+@if(isset($WarningMessage))
+<!-- Message trigger for the events -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                <div class="panel-body">
+                  <div class="alert alert-warning" role="alert">
+                    <strong>{{ $WarningMessage }}</strong>
+                  </div>
+                </div>
+        </div>
+    </div>
+</div>
+@endif
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Welcome {{ $user->name }} Please submit your answer </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/questions') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group">
@@ -27,10 +58,10 @@
 
                             <div class="col-md-6">
                 <?php
-                          for ($j=1; $j <= 4; $j++)
+                          for ($j='A'; $j <= 'D'; $j++)
                           {
                 ?>
-                                <input id="question" type="radio" name="<?php echo "question".$i ;?>" value="<?php echo "$j"; ?>"> <?php echo "$j"; ?> 
+                                <input id="question" type="radio" name="<?php echo "question".$i ;?>" value="<?php echo "$j"; ?>"> <?php echo "$j"; ?>
                 <?php
                           }
                 ?>
