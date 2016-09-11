@@ -78,7 +78,7 @@ class QuizController extends Controller
         $IncorrectResponse=0;
         $NotAttempt=0;
         $submittedanswer = Submission::where('uid',Auth::user()->id)->get();
-        $answer = Question::where('key' => $submittedanswer[0]->key)->get();
+        $answer = Question::where('key', $submittedanswer[0]->key)->get();
 
         for ($i=1; $i <= $this->NumberOfQuestions ; $i++)
         {
@@ -105,12 +105,12 @@ class QuizController extends Controller
 
         if($score->save())
           return view('success',[
-                      'message' => 'I got Your Response :)',
+                      'message' => 'We got Your Response :)',
                       'level' => 'success',
                       ]);
         else
           return view('success',[
-                      'message' => 'I encounter some problem In calculating your Score :(',
+                      'message' => 'Our system encounter some problem In calculating your Score :( <br> Contact admin Right now',
                       'level' => 'danger',
                       ]);
 
@@ -124,12 +124,12 @@ class QuizController extends Controller
         redirect('/home');          // if not redirect it to somewhere
 
       // now get the latest scores and generate the view
-      $Scorecard = DB::table('scores')
+      $Scorecards = DB::table('scores')
                         ->join('users', 'scores.uid', '=', 'users.id')
                         ->orderBy('score', 'asc')->get();
 
       return view('Score', [
-                  'scorecard' => $scorecard,
+                  'scorecards' => $scorecards,
       ]);
 
     }

@@ -52,5 +52,6 @@ class Quiz extends Migration
     {
         Schema::drop('questions');
         Schema::drop('submissions');
+        Schema::drop('scores');
     }
 }

@@ -75,3 +75,5 @@ Route::get('/admin/questions', function(){
 });
 
 Route::post('/admin/questions', 'QuizController@AddQuestions');
+
+Route::get('/admin/score', 'QuizController@DisplayScorecard');
