@@ -80,6 +80,15 @@ return [
             'model' => App\Admin::class,
         ],
 
+        'admins' => [
+             'driver' => 'database',
+             'table' => 'admins',
+        ],
+
+        'users' => [
+             'driver' => 'database',
+             'table' => 'users',
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
