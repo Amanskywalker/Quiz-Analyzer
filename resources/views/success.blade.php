@@ -24,7 +24,7 @@
                 <div class="panel-heading">Thank You {{ Auth::user()->name }} </div>
 
                 <div class="panel-body">
-                    <a href="{{ url('/questions') }}"> Now you can logout peacefully </a> and wait for the result.
+                    <a href="{{ url('/logout') }}"> Now you can logout peacefully </a> and wait for the result.
                 </div>
             </div>
         </div>
