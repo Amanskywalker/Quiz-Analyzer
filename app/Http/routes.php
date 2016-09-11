@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/questions', 'QuizController@DisplayForm');
 
 // to record the user response
-Route::post('/questions' 'QuizController@AddQuizResponse');
+Route::post('/questions', 'QuizController@AddQuizResponse');
 
 // for admin to login
 Route::get('/admin/login', function(){
