@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;                        // to use the user class
+use App\User;                        // to use the User class
+use App\Admin;                        // to use the Admin class
+use App\Submission;                        // to use the Submission class
+use App\Question;                        // to use the Question class
 
 use Validator;                          // to use the Validator functions to validate the user input
 
@@ -38,11 +41,48 @@ class QuizController extends Controller
     // function to record the user response
     public function AddQuizResponse (Request $request)
     {
-      # code...
+      $validator = Validator::make($request->all(), [
+                'key' => 'required|max:255',
+          ]);
+          // if validation fails send back to register page
+      if ($validator->fails())
+        {        return redirect('/questions')
+                          ->withErrors($validator)
+                          ->withInput();
+        }
+        $sub = new Submission;
+        $sub->uid = Auth::user()->id;
+        $sub->key = $request->key;
+
+        for ($i=1; $i <= $this->NumberOfQuestions ; $i++)
+        {
+          $a='question'.$i;
+          //echo "$a";
+          //echo $request->$a;
+          $sub->$a = $request->$a;
+        }
+
+        $sub->save();
+        if($sub->save())
+          return view('success',[
+                      'message' => 'Response submitted succesfully',
+                      'level' => 'success',
+                      ]);
+        else
+          return view('success',[
+                      'message' => 'Response not able to submit contact admin right now',
+                      'level' => 'danger',
+                      ]);
     }
 
     // function to display the score card
-    public function DisplayScorecard($value='')
+    public function DisplayScorecard ($value='')
+    {
+      # code...
+    }
+
+    // function to add the questions
+    public function AddQuestions ($value='')
     {
       # code...
     }
