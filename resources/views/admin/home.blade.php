@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @if(isset($Message))
 <!-- Message trigger for the events -->
