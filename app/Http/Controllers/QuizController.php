@@ -77,7 +77,7 @@ class QuizController extends Controller
         $CorrectResponse=0;
         $IncorrectResponse=0;
         $NotAttempt=0;
-        $submittedanswer = Submission::where('uid',Auth::user()->id)->get();
+        $submittedanswer = Submission::where('uid', Auth::user()->id)->get();
         $answer = Question::where('key', $submittedanswer[0]->key)->get();
 
         for ($i=1; $i <= $this->NumberOfQuestions ; $i++)
