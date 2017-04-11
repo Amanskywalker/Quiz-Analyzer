@@ -54,7 +54,7 @@
                     {
                 ?>
                         <div class="form-group">
-                            <label for="question" class="col-md-4 control-label">{{ 'question'.$i }}</label>
+                            <label for="question" class="col-md-4 control-label">{{ 'Question No '.$i }}</label>
 
                             <div class="col-md-6">
                 <?php

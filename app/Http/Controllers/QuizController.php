@@ -65,9 +65,9 @@ class QuizController extends Controller
           $sub->$a = $request->$a;
         }
 
-        $sub->save();
+        $code = $sub->save();
 
-        if( !($sub->save()) )         // redirect to the success page with error message
+        if( !$code )         // redirect to the success page with error message
           return view('success',[
                       'message' => 'I am not able to accept your Response now <br> Contact admin right now',
                       'level' => 'danger',
@@ -168,8 +168,8 @@ class QuizController extends Controller
           $sub->$a = $request->$a;
         }
 
-        $sub->save();
-        if($sub->save())
+        $code = $sub->save();
+        if($code)
           return view('admin.success',[
                       'message' => 'Question added succesfully :)',
                       'level' => 'success',
